@@ -7,7 +7,7 @@ export default function NavBar() {
         <Link to="/" className="font-bold cursor-pointer text-3xl">#VANALIFE</Link>
         <div className="flex font-semibold items-center cursor-pointer gap-10">
           <Link to="/about" className="hover:underline">  About</Link>
-          <Link to="/" className="hover:underline">Vans</Link>
+          <Link to="/vans" className="hover:underline">Vans</Link>
         </div>
       </div>
     </section>
