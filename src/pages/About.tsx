@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function About() {
     return (
-        <section className='mt-[4.6rem]'>
+        <section className=''>
             <div className="max-w-6xl mx-auto">
                 <div className="w-full">
                     <img src="/about.png" className="object-cover h-[30rem] w-full object-top aspect-video" />

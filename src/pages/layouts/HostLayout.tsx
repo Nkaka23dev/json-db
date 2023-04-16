@@ -5,7 +5,7 @@ export default function HostLayout() {
     return (
         <>
             <HostNav />
-            <section className='mt-32'>
+            <section className='mt-28'>
                 <Outlet />
             </section>
         </>
