@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
-import bgImg from "../assets/image 54.png"
 
 export default function About() {
     return (
-        <section className='mt-28'>
-            <div className="">
+        <section className='mt-[4.6rem]'>
+            <div className="max-w-6xl mx-auto">
                 <div className="w-full">
-                    <img src="https://cdn.pixabay.com/photo/2012/08/27/14/19/mountains-55067_960_720.png" className="object-cover h-[50vh] w-full object-center aspect-video" />
+                    <img src="/about.png" className="object-cover h-[30rem] w-full object-top aspect-video" />
                 </div>
-                <div className="max-w-6xl mx-auto">
+                <div className="">
                     <div className="">
                         <h1 className="text-6xl">Don’t squeeze in a sedan when you could relax in a van.</h1>
                         <p className="text-xl mt-10">Our mission is to enliven your road trip with the perfect travel van rental. Our vans are recertified before each trip to ensure your travel plans can go off without a hitch. (Hitch costs extra 😉)</p>

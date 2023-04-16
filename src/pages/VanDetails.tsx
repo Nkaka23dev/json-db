@@ -24,13 +24,13 @@ export default function VanDetails() {
         <section className='mt-28'>
             {van && <div className="">
                 <div className="max-w-5xl mx-auto">
-                    <img src={van.imageUrl} className="object-cover h-full w-full object-center aspect-video" />
+                    <img src={van.imageUrl} className="object-cover h-80 w-96 object-center aspect-video" />
                 </div>
 
                 <div className="max-w-5xl mx-auto">
                     <div className="">
                         <button className='py-3 px-10 text-xl bg-[#FFEAD0] mt-5 capitalize'>{van.type}</button>
-                        <h1 className="text-6xl">{van.name}</h1>
+                        <h1 className="text-2xl">{van.name}</h1>
                         <p className="text-xl mt-10"></p>
                         <p className="text-xl mt-10"> <span className='font-bold'>${van.price}</span> /day</p>
                     </div>

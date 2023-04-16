@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Home() {
     return (
-        <section className='bg_mg px-5 mt-24'>
+        <section className='bg_mg px-5'>
             <div className=' max-w-4xl  mx-auto text-center text-white py-32'>
                 <p className='text-6xl leading-[4.5rem] font-bold'>You got the travel plans, we
                     got the travel vans.</p>
