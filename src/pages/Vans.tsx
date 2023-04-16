@@ -36,7 +36,7 @@ export default function Vans() {
                             {[...new Set(data?.vans.map(van => van.type))].map((van) => {
                                 return <h1 key={van} className={`bg-[#FFEAD0] py-3 px-10 capitalize cursor-pointer font-semibold`}>{van}</h1>
                             })}
-                        </div>
+                        </div>``
                         <h1 className='text-xl underline cursor-pointer'>Clear filters</h1>
                     </div>
                 </div>

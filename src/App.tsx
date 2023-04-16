@@ -15,6 +15,8 @@ import HostVans from "./pages/hostpages/HostVans";
 import Dashboard from "./pages/hostpages/Dashboard";
 import Reviews from "./pages/hostpages/Reviews";
 import Income from "./pages/hostpages/Income";
+import HostVanDetails from "./pages/hostpages/hostVans/HostVanDetails";
+
 
 const queryClient = new QueryClient();
 
@@ -27,9 +29,10 @@ const router = createBrowserRouter(
       <Route path="vans/:id/" element={<VanDetails />} />
       <Route path="host" element={<HostLayout />}>
         <Route index element={<Dashboard />} />
-        <Route path="vans" element={<HostVans />} />
         <Route path="reviews" element={<Reviews />} />
         <Route path="income" element={<Income />} />
+        <Route path="vans" element={<HostVans />} />
+        <Route path=":id" element={<HostVanDetails />} />
       </Route>
     </Route>
   )

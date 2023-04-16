@@ -8,7 +8,7 @@ export default function HostNav() {
                     <NavLink to="/host" end className="hover:underline">Dashboard</NavLink>
                     <NavLink to="income" className="hover:underline">Income</NavLink>
                     <NavLink to="vans" className="hover:underline">Vans</NavLink>
-                    <NavLink to="reviews" className="hover:underline">reviews</NavLink>
+                    <NavLink to="reviews" className="hover:underline">Reviews</NavLink>
                 </div>
             </div>
         </section>
