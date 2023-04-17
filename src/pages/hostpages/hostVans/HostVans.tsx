@@ -1,5 +1,5 @@
 import React from 'react'
-import VansList from '../../components/VansList'
+import VansList from '../../../components/VansList'
 
 export default function HostVans() {
     return (

@@ -36,7 +36,7 @@ export default function Vans() {
                             {[...new Set(data?.vans.map(van => van.type))].map((van) => {
                                 return <h1 key={van} className={`bg-[#FFEAD0] py-3 px-10 capitalize cursor-pointer font-semibold`}>{van}</h1>
                             })}
-                        </div>
+                        </div>``
                         <h1 className='text-xl underline cursor-pointer'>Clear filters</h1>
                     </div>
                 </div>
@@ -44,7 +44,7 @@ export default function Vans() {
                     {data?.vans.map((van) => {
                         return (
                             <Link to={`/vans/${van.id}`} key={van.id} className='cursor-pointer'>
-                                <img src={van.imageUrl} alt="" />
+                                <img src={van.imageUrl} alt=""  className="w-96 h-96"/>
                                 <div className='my-3 flex justify-between items-center font-semibold'>
                                     <div>
                                         <h1>{van.name}</h1>

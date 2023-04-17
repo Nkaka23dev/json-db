@@ -7,7 +7,7 @@ export default function PageLayout() {
             <nav>
                 <NavBar />
             </nav>
-            <main className='mt-[4.6rem]'>
+            <main className='mt-[5.6rem]'>
                 <Outlet />
             </main>
             <footer className=''>
