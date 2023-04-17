@@ -4,7 +4,7 @@ export default function Dashboard() {
     return (
         <section>
             <div className='px-5 bg-[#FFEAD0] '>
-                <div className='max-w-6xl mx-auto space-y-3 py-6 '>
+                <div className='max-w-6xl mx-auto space-y-3 py-12'>
                     <div>
                         <h1 className="text-2xl font-bold">Welcome!</h1>
                     </div>

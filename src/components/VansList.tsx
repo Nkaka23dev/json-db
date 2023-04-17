@@ -23,7 +23,7 @@ export default function VansList() {
             <div className="max-w-6xl mx-auto">
                 <div className=''>
                     <div className="flex justify-between max-w-6xl mx-auto  items-center py-10 ">
-                        <p className="text-2xl font-bold">Your Listed Vans</p>
+                        <p className="text-4xl font-bold">Your Listed Vans</p>
                         <p className="text-xl font-semibold">View All</p>
                     </div>
                 </div>

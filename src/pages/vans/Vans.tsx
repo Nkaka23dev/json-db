@@ -44,7 +44,7 @@ export default function Vans() {
                     {data?.vans.map((van) => {
                         return (
                             <Link to={`/vans/${van.id}`} key={van.id} className='cursor-pointer'>
-                                <img src={van.imageUrl} alt="" />
+                                <img src={van.imageUrl} alt=""  className="w-96 h-96"/>
                                 <div className='my-3 flex justify-between items-center font-semibold'>
                                     <div>
                                         <h1>{van.name}</h1>
