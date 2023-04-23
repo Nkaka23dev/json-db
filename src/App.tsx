@@ -12,7 +12,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import VanDetails from "./pages/vans/VanDetails";
 import PageLayout from "./pages/layouts/PageLayout";
 import HostLayout from "./pages/layouts/HostLayout";
-import HostVans from "./pages/hostpages/hostVans/HostVans";
+import HostVans, { loader as hostVansLoader } from "./pages/hostpages/hostVans/HostVans";
 import Dashboard from "./pages/hostpages/Dashboard";
 import Reviews from "./pages/hostpages/Reviews";
 import Income from "./pages/hostpages/Income";
@@ -21,7 +21,7 @@ import VansDetailsInfo from "./pages/hostpages/hostVans/vansDetails/VansDetailsI
 import VansDetailsPricing from "./pages/hostpages/hostVans/vansDetails/VansDetailsPricing";
 import VansDetailsPhoto from "./pages/hostpages/hostVans/vansDetails/VansDetailsPhoto";
 import NotFound from "./pages/NotFound";
-
+import Error from "./components/Error";
 
 const queryClient = new QueryClient();
 
@@ -36,7 +36,11 @@ const router = createBrowserRouter(
         <Route index element={<Dashboard />} />
         <Route path="reviews" element={<Reviews />} />
         <Route path="income" element={<Income />} />
-        <Route path="vans" element={<HostVans />} />
+        <Route
+          loader={hostVansLoader}
+          errorElement={<Error />}
+          path="vans"
+          element={<HostVans />} />
         <Route path="vans/:id" element={<HostVanDetails />}>
           <Route index element={<VansDetailsInfo />} />
           <Route path="pricing" element={<VansDetailsPricing />} />

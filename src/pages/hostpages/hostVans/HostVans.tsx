@@ -1,25 +1,13 @@
 import { useEffect, useState } from "react"
 import Van from "../../../VansInterface"
-import { Link } from "react-router-dom"
+import { Link, useLoaderData } from "react-router-dom"
 import { getVans } from "../../../api"
 
+export function loader() {
+    return getVans();
+}
 export default function HostVans() {
-    const [vans, setVans] = useState<Van[]>([])
-    const [loading, setLoading] = useState<boolean>(false);
-
-    useEffect(() => {
-        async function loadVans() {
-            setLoading(true)
-            const data = await getVans()
-            setVans(data)
-            setLoading(false)
-        }
-        loadVans();
-    }, [])
-
-    if(loading){
-        
-    }
+    const vans = useLoaderData() as Van[];
     return (
         <section className="bg-[#FFF7ED] px-5 ">
             <div className="max-w-6xl mx-auto">
