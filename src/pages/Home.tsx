@@ -1,4 +1,4 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Home() {
     return (
@@ -8,7 +8,7 @@ export default function Home() {
                     got the travel vans.</p>
                 <p className='mt-5 '>Add adventure to your life by joining the #vanlife movement.
                     Rent the perfect van to make your perfect road trip.</p>
-                    <button className='py-4 text-xl font-semibold  mt-16 bg-[#FF8C38] w-full'>Find your van</button>
+                <button className='py-4 text-xl font-semibold  mt-16 bg-[#FF8C38] w-full'><Link to="vans">Find your van</Link></button>
             </div>
         </section>
     )
