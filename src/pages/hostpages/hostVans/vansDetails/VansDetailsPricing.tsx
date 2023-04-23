@@ -1,5 +1,5 @@
 import { useOutletContext } from 'react-router-dom';
-import { Van } from './HostVanDetails';
+import Van from '../../../../VansInterface';
 
 export default function VansDetailsPricing() {
     const currentVan = useOutletContext<Van>();

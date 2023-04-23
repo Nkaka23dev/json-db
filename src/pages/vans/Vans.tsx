@@ -1,17 +1,21 @@
 import { useQuery } from 'react-query';
-import { Link } from 'react-router-dom'
-interface Van {
-    description: String
-    id: number
-    imageUrl: string
-    name: string
-    price: number
-    type: string
-}
-interface VansData {
-    vans: Van[];
-}
+import { Link, useSearchParams } from 'react-router-dom'
+import { VansData } from '../../VansInterface';
+
 export default function Vans() {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const typeFilter = searchParams.get("type");
+
+    const handleFilterChange = (key: string, value: string | null): any => {
+        setSearchParams(prevParams => {
+            if (value === null) {
+                prevParams.delete(key)
+            } else {
+                prevParams.set(key, value)
+            }
+            return prevParams
+        })
+    }
     const { isLoading, error, data } = useQuery<VansData>('data', async () => {
         const response = await fetch('/api/vans');
         if (!response.ok) {
@@ -19,38 +23,54 @@ export default function Vans() {
         }
         return response.json();
     });
-
     if (isLoading) {
         return <div className='py-80 text-center text-2xl text-gray-600'>Loading...</div>;
     }
     if (error) {
-        return <div className='py-80 text-center text-2xl text-red-600'>error</div>;
+        return <div className='py-80 text-center text-2xl text-red-600'>Error, Couldn't fetch the data</div>;
     }
+    const displayedVans = typeFilter
+        ? data?.vans.filter(van => van.type === typeFilter)
+        : data?.vans
     return (
-        <section className='mt-40'>
+        <section className='mt-24'>
             <div className='max-w-6xl mx-auto'>
                 <div>
                     <h1 className='text-5xl font-bold'>Explore our van options</h1>
-                    <div className='flex justify-between items-center'>
+                    <div className='flex max-w-[61rem] justify-between items-center'>
                         <div className='flex gap-10 my-10'>
                             {[...new Set(data?.vans.map(van => van.type))].map((van) => {
-                                return <h1 key={van} className={`bg-[#FFEAD0] py-3 px-10 capitalize cursor-pointer font-semibold`}>{van}</h1>
+                                return <button onClick={() => handleFilterChange("type", `${van}`)} key={van}
+                                    className={`bg-[#FFEAD0] text-black 
+                                 ${van === 'simple' ? 'hover:bg-[#E17654]  hover:text-white' : ''}
+                                 ${van === 'rugged' ? 'hover:bg-[#115E59] hover:text-white ' : ''} 
+                                 ${van === 'rugged' ? 'hover:bg-[#115E59] hover:text-white ' : ''} 
+                                 ${van === 'luxury' ? 'hover:bg-black hover:text-white' : ''} 
+                                 py-3 px-10 capitalize cursor-pointer font-semibold`}>{van}</button>
                             })}
-                        </div>``
-                        <h1 className='text-xl underline cursor-pointer'>Clear filters</h1>
+                        </div>
+                        {typeFilter && <button onClick={() => handleFilterChange('type', null)} className='text-xl hover:underline cursor-pointer'>Clear filters</button>}
                     </div>
                 </div>
                 <div className='grid grid-cols-2 gap-10'>
-                    {data?.vans.map((van) => {
+                    {displayedVans?.map((van) => {
                         return (
-                            <Link to={`/vans/${van.id}`} key={van.id} className='cursor-pointer'>
-                                <img src={van.imageUrl} alt=""  className="w-96 h-96"/>
-                                <div className='my-3 flex justify-between items-center font-semibold'>
-                                    <div>
-                                        <h1>{van.name}</h1>
-                                        <button className="hover:bg-gray-800 py-3 px-10 bg-black text-white">Luxry</button>
+                            <Link to={`${van.id}`}
+                                state={{
+                                    search: `?${searchParams.toString()}`,
+                                    type: typeFilter
+                                }}
+                                key={van.id} className='cursor-pointer'>
+                                <img src={van.imageUrl} alt="" className="w-96 h-96" />
+                                <div className='my-3 grid grid-cols-2 items-center font-semibold'>
+                                    <div className='space-y-1'>
+                                        <h1 className='text-lg capitalize'>{van.name}</h1>
+                                        <button className={`capitalize  text-white py-3 px-10 ${van.type === 'simple' ? 'bg-[#E17654]' : ''}
+                                        ${van.type === 'rugged' ? 'bg-[#115E59]' : ''}
+                                        ${van.type === 'luxury' ? 'bg-black' : ''}`}
+                                        >{van.type}</button>
                                     </div>
-                                    <div>
+                                    <div className='ml-[4.5rem]'>
                                         <p>${van.price}</p>
                                         <p>/day</p>
                                     </div>
@@ -60,6 +80,6 @@ export default function Vans() {
                     })}
                 </div>
             </div>
-        </section>
+        </section >
     )
 }

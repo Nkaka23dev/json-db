@@ -1,15 +1,10 @@
 import { useState, useEffect } from 'react'
-import { useParams, Link } from "react-router-dom"
+import { useParams, Link, useLocation } from "react-router-dom"
+import Van from '../../VansInterface';
 
-interface Van {
-    description: String
-    id: number
-    imageUrl: string
-    name: string
-    price: number
-    type: string
-}
 export default function VanDetails() {
+    const location = useLocation();
+    console.log(location)
     const params = useParams();
     const [van, setVan] = useState<Van>()
 
@@ -18,19 +13,22 @@ export default function VanDetails() {
             .then(res => res.json())
             .then(data => setVan(data.vans))
     }, [params.id])
+    const search = location.state?.search || ""
+    const type = location.state?.type || "all"
     return (
         <section className='mt-28'>
-            {van && <div className="">
+            {van ? <div className="">
                 <div className="max-w-5xl mx-auto">
-                    <img src={van.imageUrl} className="object-cover h-80 w-96 object-center aspect-video" />
+                    <Link to={`..${search}`} relative="path" className="text-xl font-semibold py-5 underline capitalize">Back to {type} Vans</Link>
+                    <img src={van.imageUrl} className="object-cover mt-5 h-80 w-96 object-center aspect-video" />
                 </div>
 
-                <div className="max-w-5xl mx-auto">
+                <div className="max-w-5xl mx-auto ">
                     <div className="">
                         <button className='py-3 px-10 text-xl bg-[#FFEAD0] mt-5 capitalize'>{van.type}</button>
                         <h1 className="text-2xl">{van.name}</h1>
-                        <p className="text-xl mt-10"></p>
-                        <p className="text-xl mt-10"> <span className='font-bold'>${van.price}</span> /day</p>
+                        <p className="text-xl mt-5"></p>
+                        <p className="text-xl mt-5"> <span className='font-bold'>${van.price}</span> /day</p>
                     </div>
                     <div className="py-5">
                         <div className="text-lg  text-gray-700">
@@ -42,7 +40,7 @@ export default function VanDetails() {
                         </div>
                     </div>
                 </div>
-            </div>}
+            </div> : <h2 className="py-80 text-center text-2xl text-gray-600">Loading.....</h2>}
 
         </section>
     )

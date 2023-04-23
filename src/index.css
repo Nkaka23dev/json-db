@@ -11,11 +11,10 @@
   background-repeat: no-repeat;
   /* Do not repeat the image */
   background-size: cover;
-
   /* Resize the background image to cover the entire container */
   background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.46), rgba(0, 0, 0, 0.46)), url(/my-image.png);
 }
 
 .active {
-  @apply  underline ;
+  @apply  underline text-xl font-bold ;
 }

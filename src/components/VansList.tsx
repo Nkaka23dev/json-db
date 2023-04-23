@@ -1,15 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import Van from "../VansInterface"
 
-interface Van {
-    description: String
-    id: number
-    imageUrl: string
-    name: string
-    price: number,
-    hostId: number
-    type: string
-}
 export default function VansList() {
     const [vans, setVans] = useState([])
 
@@ -31,7 +23,7 @@ export default function VansList() {
                     <section>
                         {vans.map((van: Van) => {
                             return (
-                                <Link to={`/host/${van.id}`} key={van.id} className="bg-white flex items-center mt-6 px-16 py-10 justify-between">
+                                <Link to={`vans/${van.id}`} key={van.id} className="bg-white flex items-center mt-6 px-16 py-10 justify-between">
                                     <div className="flex items-center gap-5">
                                         <img src={van.imageUrl} className="w-32 h-32" alt="" />
                                         <div>

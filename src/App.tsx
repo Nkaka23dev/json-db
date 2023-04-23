@@ -20,6 +20,7 @@ import HostVanDetails from "./pages/hostpages/hostVans/vansDetails/HostVanDetail
 import VansDetailsInfo from "./pages/hostpages/hostVans/vansDetails/VansDetailsInfo";
 import VansDetailsPricing from "./pages/hostpages/hostVans/vansDetails/VansDetailsPricing";
 import VansDetailsPhoto from "./pages/hostpages/hostVans/vansDetails/VansDetailsPhoto";
+import NotFound from "./pages/NotFound";
 
 
 const queryClient = new QueryClient();
@@ -30,18 +31,19 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
       <Route path="vans" element={<Vans />} />
-      <Route path="vans/:id/" element={<VanDetails />} />
+      <Route path="vans/:id" element={<VanDetails />} />
       <Route path="host" element={<HostLayout />}>
         <Route index element={<Dashboard />} />
         <Route path="reviews" element={<Reviews />} />
         <Route path="income" element={<Income />} />
         <Route path="vans" element={<HostVans />} />
-        <Route path=":id" element={<HostVanDetails />}>
+        <Route path="vans/:id" element={<HostVanDetails />}>
           <Route index element={<VansDetailsInfo />} />
           <Route path="pricing" element={<VansDetailsPricing />} />
           <Route path="photo" element={<VansDetailsPhoto />} />
         </Route>
       </Route>
+      <Route path="*" element={<NotFound />} />
     </Route>
   )
 )

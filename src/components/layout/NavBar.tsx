@@ -6,9 +6,9 @@ export default function NavBar() {
       <div className="max-w-6xl mx-auto py-6 flex items-center justify-between text-xl">
         <NavLink to="/" className="font-bold cursor-pointer text-2xl">#VANLIFE</NavLink>
         <div className="flex font-semibold items-center cursor-pointer gap-x-10">
-          <NavLink to="/host" className="hover:underline">  Host</NavLink>
-          <NavLink to="/about" className="hover:underline">  About</NavLink>
-          <NavLink to="/vans" className="hover:underline">Vans</NavLink>
+          <NavLink to="host" className="hover:underline">  Host</NavLink>
+          <NavLink to="about" className="hover:underline">  About</NavLink>
+          <NavLink to="vans" className="hover:underline">Vans</NavLink>
         </div>
       </div>
     </section>

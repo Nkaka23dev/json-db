@@ -1,5 +1,6 @@
 import { useOutletContext } from "react-router-dom";
-import { Van } from './HostVanDetails';
+import Van from "../../../../VansInterface";
+
 export default function VansDetailsPhoto() {
     const currentVan = useOutletContext<Van>();
     return (
