@@ -1,8 +1,12 @@
-import { useQuery } from 'react-query';
-import { Link, useSearchParams } from 'react-router-dom'
-import { VansData } from '../../VansInterface';
+import { Link, useLoaderData, useSearchParams } from 'react-router-dom'
+import Van from '../../VansInterface';
+import { getVans } from '../../api';
 
+export function loader() {
+    return getVans()
+}
 export default function Vans() {
+    const vans = useLoaderData() as any
     const [searchParams, setSearchParams] = useSearchParams();
     const typeFilter = searchParams.get("type");
 
@@ -15,23 +19,10 @@ export default function Vans() {
             }
             return prevParams
         })
-    }
-    const { isLoading, error, data } = useQuery<VansData>('data', async () => {
-        const response = await fetch('/api/vans');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    });
-    if (isLoading) {
-        return <div className='py-80 text-center text-2xl text-gray-600'>Loading...</div>;
-    }
-    if (error) {
-        return <div className='py-80 text-center text-2xl text-red-600'>Error, Couldn't fetch the data</div>;
-    }
+    } 
     const displayedVans = typeFilter
-        ? data?.vans.filter(van => van.type === typeFilter)
-        : data?.vans
+        ? vans.filter((van: Van) => van.type === typeFilter)
+        : vans
     return (
         <section className='mt-24'>
             <div className='max-w-6xl mx-auto'>
@@ -39,21 +30,28 @@ export default function Vans() {
                     <h1 className='text-5xl font-bold'>Explore our van options</h1>
                     <div className='flex max-w-[61rem] justify-between items-center'>
                         <div className='flex gap-10 my-10'>
-                            {[...new Set(data?.vans.map(van => van.type))].map((van) => {
-                                return <button onClick={() => handleFilterChange("type", `${van}`)} key={van}
-                                    className={`bg-[#FFEAD0] text-black 
-                                 ${van === 'simple' ? 'hover:bg-[#E17654]  hover:text-white' : ''}
-                                 ${van === 'rugged' ? 'hover:bg-[#115E59] hover:text-white ' : ''} 
-                                 ${van === 'rugged' ? 'hover:bg-[#115E59] hover:text-white ' : ''} 
-                                 ${van === 'luxury' ? 'hover:bg-black hover:text-white' : ''} 
-                                 py-3 px-10 capitalize cursor-pointer font-semibold`}>{van}</button>
-                            })}
+                            <div className='flex gap-10 my-10'>
+                                <button
+                                    onClick={() => handleFilterChange("type", "simple")}
+                                    className={
+                                        ` py-3 px-10 hover:bg-[#E17654] hover:text-white rounded-sm font-semibold ${typeFilter === "simple" ? "bg-[#E17654]  text-white" : "bg-[#FFEAD0] "}`
+                                    }
+                                >Simple</button>
+                                <button className={
+                                    ` py-3 px-10 hover:bg-black hover:text-white  rounded-sm font-semibold ${typeFilter === "luxury" ? " bg-black text-white" : "bg-[#FFEAD0] "}`
+                                } onClick={() => handleFilterChange("type", "luxury")}>Luxury</button>
+                                <button onClick={() => handleFilterChange("type", "rugged")}
+                                    className={
+                                        ` py-3 hover:bg-[#115E59] hover:text-white  px-10 rounded-sm font-semibold ${typeFilter === "rugged" ? "bg-[#115E59] text-white" : "bg-[#FFEAD0] "}`
+                                    }
+                                >Rugged</button>
+                            </div>
                         </div>
                         {typeFilter && <button onClick={() => handleFilterChange('type', null)} className='text-xl hover:underline cursor-pointer'>Clear filters</button>}
                     </div>
                 </div>
-                <div className='grid grid-cols-2 gap-10'>
-                    {displayedVans?.map((van) => {
+                <div className='grid grid-cols-3 gap-10'>
+                    {displayedVans?.map((van: any) => {
                         return (
                             <Link to={`${van.id}`}
                                 state={{

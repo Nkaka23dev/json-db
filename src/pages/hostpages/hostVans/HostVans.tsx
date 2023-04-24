@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import Van from "../../../VansInterface"
 import { Link, useLoaderData } from "react-router-dom"
-import { getVans } from "../../../api"
+import { getHostVans } from "../../../api";
 
 export function loader() {
-    return getVans();
+    return getHostVans();
 }
 export default function HostVans() {
     const vans = useLoaderData() as Van[];

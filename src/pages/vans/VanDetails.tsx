@@ -4,7 +4,6 @@ import Van from '../../VansInterface';
 
 export default function VanDetails() {
     const location = useLocation();
-    console.log(location)
     const params = useParams();
     const [van, setVan] = useState<Van>()
 
