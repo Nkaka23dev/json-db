@@ -3,7 +3,6 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
-  Routes,
 } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -21,7 +20,6 @@ import VansDetailsInfo from "./pages/hostpages/hostVans/vansDetails/VansDetailsI
 import VansDetailsPricing from "./pages/hostpages/hostVans/vansDetails/VansDetailsPricing";
 import VansDetailsPhoto from "./pages/hostpages/hostVans/vansDetails/VansDetailsPhoto";
 
-
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter(
@@ -30,13 +28,13 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
       <Route path="vans" element={<Vans />} />
-      <Route path="vans/:id/" element={<VanDetails />} />
+      <Route path="vans/:id" element={<VanDetails />} />
       <Route path="host" element={<HostLayout />}>
         <Route index element={<Dashboard />} />
         <Route path="reviews" element={<Reviews />} />
         <Route path="income" element={<Income />} />
         <Route path="vans" element={<HostVans />} />
-        <Route path=":id" element={<HostVanDetails />}>
+        <Route path="vans/:id" element={<HostVanDetails />}>
           <Route index element={<VansDetailsInfo />} />
           <Route path="pricing" element={<VansDetailsPricing />} />
           <Route path="photo" element={<VansDetailsPhoto />} />

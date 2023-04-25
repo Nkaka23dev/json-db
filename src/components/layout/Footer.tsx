@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function Footer() {
     return (
         <section className='py-6  text-center  text-white opacity-70 bg-[#252525]'>

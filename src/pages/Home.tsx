@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function Home() {
     return (
         <section className='bg_mg px-5'>

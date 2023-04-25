@@ -31,7 +31,7 @@ export default function VansList() {
                     <section>
                         {vans.map((van: Van) => {
                             return (
-                                <Link to={`/host/${van.id}`} key={van.id} className="bg-white flex items-center mt-6 px-16 py-10 justify-between">
+                                <Link to={`${van.id}`} key={van.id} className="bg-white flex items-center mt-6 px-16 py-10 justify-between">
                                     <div className="flex items-center gap-5">
                                         <img src={van.imageUrl} className="w-32 h-32" alt="" />
                                         <div>
