@@ -1,15 +1,27 @@
-import { useEffect } from "react"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import NavBar from "./components/layout/NavBar";
+import Footer from "./components/layout/Footer";
+import Vans from "./pages/Vans";
+import { QueryClient, QueryClientProvider } from 'react-query';
+import VanDetails from "./pages/VanDetails";
+
+const queryClient = new QueryClient();
 
 export default function App() {
-  
-  useEffect(() => {
-    fetch("/api/vans")
-      .then(res => res.json())
-      .then(data => console.log(data.vans[0])).catch((e) => console.log(e))
-  }, [])
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="vans" element={<Vans />} />
+          <Route path="vans/:id" element={<VanDetails />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </QueryClientProvider>
   )
 }
