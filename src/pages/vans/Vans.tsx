@@ -81,7 +81,6 @@ export default function Vans() {
             </div>
         )
     }
-
     return (
         <section className='mt-24'>
             <div className='max-w-6xl mx-auto'>

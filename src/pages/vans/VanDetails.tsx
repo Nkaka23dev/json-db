@@ -1,18 +1,21 @@
-import { Link, useLocation, useLoaderData } from "react-router-dom"
+import { Link, useLocation, useLoaderData, defer, Await } from "react-router-dom"
 import Van from '../../VansInterface';
 import { getVans } from '../../api';
+import { Suspense } from "react";
+import Loading from "../../components/Loading";
 
 export const loader = ({ params }: any) => {
     const { id } = params;
-    return getVans(id);
+    return defer({ vanDetails: getVans(id) });
 }
 export default function VanDetails() {
     const location = useLocation();
-    const van = useLoaderData() as Van;
+    const vanDetailPromise = useLoaderData() as any;
     const search = location.state?.search || ""
     const type = location.state?.type || "all"
-    return (
-        <section className='mt-28'>
+    console.log(vanDetailPromise)
+    function vanDetails(van: Van) {
+        return (
             <div className="">
                 <div className="max-w-5xl mx-auto">
                     <Link to={`..${search}`} relative="path" className="text-xl font-semibold py-5 underline capitalize">Back to {type} Vans</Link>
@@ -36,6 +39,15 @@ export default function VanDetails() {
                     </div>
                 </div>
             </div>
+        )
+    }
+    return (
+        <section className='mt-28'>
+            <Suspense fallback={<Loading />}>
+                <Await resolve={vanDetailPromise.vanDetails}>
+                    {vanDetails}
+                </Await>
+            </Suspense>
         </section>
     )
 }
